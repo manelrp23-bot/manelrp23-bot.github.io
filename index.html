@@ -2,1299 +2,3449 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <meta name="description"
-        content="NEXO — Un espacio para conectar ideas, personas y oportunidades.">
-
-    <title>NEXO — Conecta con lo que importa</title>
-
-    <style>
-
-        /* =========================================
-           1. VARIABLES Y CONFIGURACIÓN GENERAL
-           ========================================= */
-
-        :root {
-            --azul: #14263d;
-            --azul-claro: #1f3a56;
-            --dorado: #b18a4a;
-            --dorado-hover: #947039;
-
-            --crema: #f7f5f0;
-            --blanco: #ffffff;
-            --texto: #243447;
-            --gris: #687585;
-            --borde: #e5e0d6;
-
-            --sombra: 0 15px 45px rgba(20, 38, 61, 0.08);
-
-            --serif: Georgia, "Times New Roman", serif;
-            --sans: Arial, Helvetica, sans-serif;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 90px;
-        }
-
-        body {
-            font-family: var(--sans);
-            color: var(--texto);
-            background: var(--crema);
-            line-height: 1.7;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        button {
-            font-family: inherit;
-            cursor: pointer;
-        }
-
-        .contenedor {
-            width: 90%;
-            max-width: 1160px;
-            margin: 0 auto;
-        }
-
-        .serif {
-            font-family: var(--serif);
-        }
-
-        /* =========================================
-           2. CABECERA
-           ========================================= */
-
-        .cabecera {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-
-            background: rgba(247, 245, 240, 0.96);
-            border-bottom: 1px solid var(--borde);
-
-            backdrop-filter: blur(12px);
-        }
-
-        .nav {
-            min-height: 82px;
-
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-family: var(--serif);
-            font-size: 1.7rem;
-            font-weight: bold;
-            letter-spacing: 5px;
-            color: var(--azul);
-        }
-
-        .logo span {
-            color: var(--dorado);
-        }
-
-        .enlaces {
-            display: flex;
-            align-items: center;
-            gap: 36px;
-            list-style: none;
-        }
-
-        .enlaces a {
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-            color: var(--azul);
-
-            transition: color 0.3s ease;
-        }
-
-        .enlaces a:hover {
-            color: var(--dorado);
-        }
-
-        .enlace-boton {
-            border: 1px solid var(--azul);
-            padding: 9px 18px;
-        }
-
-        .enlace-boton:hover {
-            background: var(--azul);
-            color: var(--blanco) !important;
-        }
-
-        .boton-menu {
-            display: none;
-
-            background: transparent;
-            border: none;
-
-            color: var(--azul);
-            font-size: 1.7rem;
-        }
-
-        /* =========================================
-           3. BOTONES
-           ========================================= */
-
-        .boton {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-
-            background: var(--azul);
-            color: var(--blanco);
-
-            border: 1px solid var(--azul);
-
-            padding: 14px 26px;
-
-            font-size: 0.85rem;
-            font-weight: bold;
-            letter-spacing: 0.3px;
-
-            transition:
-                background 0.3s ease,
-                transform 0.3s ease,
-                border-color 0.3s ease;
-        }
-
-        .boton:hover {
-            background: var(--azul-claro);
-            transform: translateY(-2px);
-        }
-
-        .boton-dorado {
-            background: var(--dorado);
-            border-color: var(--dorado);
-        }
-
-        .boton-dorado:hover {
-            background: var(--dorado-hover);
-            border-color: var(--dorado-hover);
-        }
-
-        .boton-contorno {
-            background: transparent;
-            color: var(--azul);
-        }
-
-        .boton-contorno:hover {
-            background: var(--azul);
-            color: var(--blanco);
-        }
-
-        /* =========================================
-           4. PORTADA
-           ========================================= */
-
-        .hero {
-            position: relative;
-            overflow: hidden;
-
-            background: var(--crema);
-
-            padding: 120px 0 110px;
-        }
-
-        .hero::before {
-            content: "";
-
-            position: absolute;
-            top: -200px;
-            right: -200px;
-
-            width: 600px;
-            height: 600px;
-
-            border: 1px solid rgba(177, 138, 74, 0.18);
-            border-radius: 50%;
-
-            pointer-events: none;
-        }
-
-        .hero-contenido {
-            display: grid;
-            grid-template-columns: 1.1fr 0.9fr;
-
-            align-items: center;
-            gap: 80px;
-        }
-
-        .etiqueta {
-            display: inline-block;
-
-            color: var(--dorado);
-
-            font-size: 0.72rem;
-            font-weight: bold;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-
-            margin-bottom: 24px;
-        }
-
-        .hero h1 {
-            font-family: var(--serif);
-
-            color: var(--azul);
-
-            font-size: clamp(3.2rem, 6vw, 5.5rem);
-            font-weight: normal;
-            line-height: 1.05;
-
-            letter-spacing: -2px;
-
-            margin-bottom: 28px;
-        }
-
-        .hero h1 span {
-            color: var(--dorado);
-        }
-
-        .hero p {
-            max-width: 500px;
-
-            color: var(--gris);
-
-            font-size: 1.05rem;
-
-            margin-bottom: 34px;
-        }
-
-        .hero-botones {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        /* =========================================
-           5. ILUSTRACIÓN SIN IMÁGENES
-           ========================================= */
-
-        .ilustracion {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-
-            min-height: 350px;
-        }
-
-        .marco {
-            position: relative;
-
-            width: 300px;
-            height: 350px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border: 1px solid rgba(177, 138, 74, 0.55);
-
-            animation: aparecer 1s ease both;
-        }
-
-        .marco::before {
-            content: "";
-
-            position: absolute;
-
-            inset: 14px;
-
-            border: 1px solid rgba(177, 138, 74, 0.3);
-        }
-
-        .simbolo {
-            position: relative;
-            z-index: 1;
-
-            width: 170px;
-            height: 170px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            border: 1px solid var(--dorado);
-
-            transform: rotate(45deg);
-        }
-
-        .simbolo::before {
-            content: "";
-
-            width: 110px;
-            height: 110px;
-
-            border: 1px solid var(--dorado);
-
-            position: absolute;
-        }
-
-        .simbolo-letra {
-            font-family: var(--serif);
-
-            font-size: 5rem;
-
-            color: var(--azul);
-
-            transform: rotate(-45deg);
-        }
-
-        .decoracion {
-            position: absolute;
-
-            width: 8px;
-            height: 8px;
-
-            background: var(--dorado);
-        }
-
-        .decoracion-1 {
-            top: 30px;
-            left: 30px;
-        }
-
-        .decoracion-2 {
-            bottom: 30px;
-            right: 30px;
-        }
-
-        /* =========================================
-           6. SECCIONES
-           ========================================= */
-
-        .seccion {
-            padding: 100px 0;
-        }
-
-        .seccion-blanca {
-            background: var(--blanco);
-        }
-
-        .seccion-cabecera {
-            max-width: 650px;
-            margin-bottom: 50px;
-        }
-
-        .seccion-cabecera.centrada {
-            text-align: center;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .seccion-cabecera h2 {
-            font-family: var(--serif);
-
-            color: var(--azul);
-
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: normal;
-
-            line-height: 1.2;
-
-            margin-bottom: 18px;
-        }
-
-        .seccion-cabecera p {
-            color: var(--gris);
-        }
-
-        .linea-dorada {
-            width: 45px;
-            height: 2px;
-
-            background: var(--dorado);
-
-            margin-bottom: 25px;
-        }
-
-        .centrada .linea-dorada {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* =========================================
-           7. FUNCIONES
-           ========================================= */
-
-        .tarjetas {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 25px;
-        }
-
-        .tarjeta {
-            background: var(--crema);
-
-            border: 1px solid var(--borde);
-
-            padding: 34px;
-
-            transition:
-                transform 0.3s ease,
-                box-shadow 0.3s ease;
-        }
-
-        .tarjeta:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--sombra);
-        }
-
-        .tarjeta-numero {
-            font-family: var(--serif);
-
-            color: var(--dorado);
-
-            font-size: 1.3rem;
-
-            margin-bottom: 25px;
-        }
-
-        .tarjeta h3 {
-            font-family: var(--serif);
-
-            color: var(--azul);
-
-            font-size: 1.45rem;
-            font-weight: normal;
-
-            margin-bottom: 15px;
-        }
-
-        .tarjeta p {
-            color: var(--gris);
-            font-size: 0.93rem;
-        }
-
-        /* =========================================
-           8. SOBRE NEXO
-           ========================================= */
-
-        .sobre-contenido {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-
-            gap: 80px;
-
-            align-items: center;
-        }
-
-        .sobre h2 {
-            font-family: var(--serif);
-
-            color: var(--azul);
-
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: normal;
-
-            line-height: 1.2;
-
-            margin-bottom: 25px;
-        }
-
-        .sobre p {
-            color: var(--gris);
-            margin-bottom: 18px;
-        }
-
-        .lista {
-            list-style: none;
-            margin-top: 28px;
-        }
-
-        .lista li {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-
-            margin-bottom: 12px;
-
-            color: var(--texto);
-            font-size: 0.95rem;
-        }
-
-        .lista li::before {
-            content: "—";
-
-            color: var(--dorado);
-            font-weight: bold;
-        }
-
-        .sobre-destacado {
-            background: var(--azul);
-            color: var(--blanco);
-
-            padding: 45px;
-
-            position: relative;
-        }
-
-        .sobre-destacado::before {
-            content: "";
-
-            position: absolute;
-
-            top: 15px;
-            left: 15px;
-            right: 15px;
-            bottom: 15px;
-
-            border: 1px solid rgba(177, 138, 74, 0.5);
-
-            pointer-events: none;
-        }
-
-        .sobre-destacado-contenido {
-            position: relative;
-            z-index: 1;
-        }
-
-        .sobre-destacado h3 {
-            font-family: var(--serif);
-
-            font-size: 2rem;
-            font-weight: normal;
-
-            margin-bottom: 20px;
-        }
-
-        .sobre-destacado p {
-            color: #cbd5e1;
-            margin-bottom: 0;
-        }
-
-        /* =========================================
-           9. LLAMADA A LA ACCIÓN
-           ========================================= */
-
-        .cta {
-            background: var(--azul);
-            color: var(--blanco);
-
-            text-align: center;
-
-            padding: 90px 0;
-        }
-
-        .cta h2 {
-            font-family: var(--serif);
-
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: normal;
-
-            margin-bottom: 18px;
-        }
-
-        .cta p {
-            color: #cbd5e1;
-
-            max-width: 550px;
-
-            margin: 0 auto 30px;
-        }
-
-        /* =========================================
-           10. PIE DE PÁGINA
-           ========================================= */
-
-        .footer {
-            background: #0c1929;
-            color: #cbd5e1;
-
-            padding: 35px 0;
-        }
-
-        .footer-contenido {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-
-            gap: 20px;
-        }
-
-        .footer-logo {
-            font-family: var(--serif);
-
-            font-size: 1.4rem;
-            letter-spacing: 4px;
-
-            color: var(--blanco);
-        }
-
-        .footer p {
-            font-size: 0.85rem;
-            color: #94a3b8;
-        }
-
-        .footer span {
-            color: var(--dorado);
-        }
-
-        /* =========================================
-           11. ANIMACIONES
-           ========================================= */
-
-        .aparecer {
-            opacity: 0;
-            transform: translateY(20px);
-
-            transition:
-                opacity 0.7s ease,
-                transform 0.7s ease;
-        }
-
-        .aparecer.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* =========================================
-           12. DISEÑO PARA MÓVILES
-           ========================================= */
-
-        @media (max-width: 800px) {
-
-            .nav {
-                min-height: 72px;
-            }
-
-            .boton-menu {
-                display: block;
-            }
-
-            .enlaces {
-                display: none;
-
-                position: absolute;
-                top: 72px;
-                left: 0;
-
-                width: 100%;
-
-                background: var(--crema);
-
-                flex-direction: column;
-                align-items: stretch;
-
-                gap: 0;
-
-                border-bottom: 1px solid var(--borde);
-            }
-
-            .enlaces.activo {
-                display: flex;
-            }
-
-            .enlaces li {
-                border-top: 1px solid var(--borde);
-            }
-
-            .enlaces a {
-                display: block;
-                padding: 15px 5%;
-            }
-
-            .enlace-boton {
-                border: none;
-            }
-
-            .hero {
-                padding: 80px 0;
-            }
-
-            .hero-contenido {
-                grid-template-columns: 1fr;
-                gap: 50px;
-                text-align: center;
-            }
-
-            .hero p {
-                margin-left: auto;
-                margin-right: auto;
-            }
-
-            .hero-botones {
-                justify-content: center;
-            }
-
-            .ilustracion {
-                min-height: 300px;
-            }
-
-            .tarjetas {
-                grid-template-columns: 1fr;
-            }
-
-            .sobre-contenido {
-                grid-template-columns: 1fr;
-                gap: 45px;
-            }
-
-            .seccion {
-                padding: 70px 0;
-            }
-
-            .footer-contenido {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-
-        @media (max-width: 420px) {
-
-            .hero h1 {
-                font-size: 3rem;
-            }
-
-            .marco {
-                width: 260px;
-                height: 310px;
-            }
-
-            .simbolo {
-                width: 145px;
-                height: 145px;
-            }
-
-            .simbolo-letra {
-                font-size: 4rem;
-            }
-
-            .hero-botones {
-                flex-direction: column;
-            }
-
-            .boton {
-                width: 100%;
-            }
-
-            .sobre-destacado {
-                padding: 35px 30px;
-            }
-        }
-
-        /* Reduce las animaciones si el usuario lo prefiere */
-
-        @media (prefers-reduced-motion: reduce) {
-
-            *,
-            *::before,
-            *::after {
-                animation-duration: 0.01ms !important;
-                transition-duration: 0.01ms !important;
-                scroll-behavior: auto !important;
-            }
-        }
-
-    </style>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEXO | Herramientas para presupuestos, precios y negocios</title>
+
+<meta name="description" content="Calcula presupuestos, precios por hora, beneficios y gastos con NEXO, una plataforma sencilla para autónomos y pequeños negocios.">
+
+<meta property="og:title" content="NEXO | Herramientas para negocios">
+<meta property="og:description" content="Organiza tus precios, presupuestos y gastos desde un solo lugar.">
+<meta property="og:type" content="website">
+
+<style>
+
+/* =================================================
+   VARIABLES
+   ================================================= */
+
+:root {
+    --navy: #172b45;
+    --navy-light: #28415e;
+    --gold: #b18a4a;
+    --gold-light: #f3eadb;
+    --cream: #f8f6f1;
+    --white: #ffffff;
+    --text: #26384b;
+    --muted: #6d7b8b;
+    --border: #e5e1d8;
+    --success: #23734d;
+    --danger: #b33a3a;
+    --shadow: 0 12px 40px rgba(23,43,69,.08);
+    --serif: Georgia, "Times New Roman", serif;
+    --sans: Arial, Helvetica, sans-serif;
+}
+
+/* =================================================
+   BASE
+   ================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 85px;
+}
+
+body {
+    font-family: var(--sans);
+    background: var(--cream);
+    color: var(--text);
+    line-height: 1.6;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #d9b875;
+    outline-offset: 3px;
+}
+
+.contenedor {
+    width: 90%;
+    max-width: 1180px;
+    margin: auto;
+}
+
+.serif {
+    font-family: var(--serif);
+}
+
+.section {
+    padding: 90px 0;
+}
+
+.section-white {
+    background: var(--white);
+}
+
+.section-title {
+    font-family: var(--serif);
+    font-weight: normal;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--navy);
+    line-height: 1.2;
+    margin-bottom: 18px;
+}
+
+.section-subtitle {
+    color: var(--muted);
+    max-width: 650px;
+}
+
+.center {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gold-line {
+    width: 45px;
+    height: 2px;
+    background: var(--gold);
+    margin-bottom: 25px;
+}
+
+.center .gold-line {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.eyebrow {
+    color: var(--gold);
+    font-size: .72rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+/* =================================================
+   CABECERA
+   ================================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(248,246,241,.97);
+    border-bottom: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+}
+
+.nav {
+    min-height: 78px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-family: var(--serif);
+    font-size: 1.7rem;
+    letter-spacing: 5px;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+.logo span {
+    color: var(--gold);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--navy);
+    font-size: .88rem;
+    transition: color .25s;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.nav-button {
+    border: 1px solid var(--navy);
+    padding: 8px 17px;
+}
+
+.nav-button:hover {
+    background: var(--navy);
+    color: white !important;
+}
+
+.menu-button {
+    display: none;
+    background: transparent;
+    border: 0;
+    color: var(--navy);
+    font-size: 1.6rem;
+}
+
+/* =================================================
+   BOTONES
+   ================================================= */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 23px;
+    border: 1px solid var(--navy);
+    background: var(--navy);
+    color: white;
+    font-size: .86rem;
+    font-weight: bold;
+    border-radius: 3px;
+    transition: background .25s, transform .25s;
+}
+
+.btn:hover {
+    background: var(--navy-light);
+    transform: translateY(-2px);
+}
+
+.btn-gold {
+    background: var(--gold);
+    border-color: var(--gold);
+}
+
+.btn-gold:hover {
+    background: #947039;
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--navy);
+}
+
+.btn-outline:hover {
+    color: white;
+}
+
+.btn-light {
+    background: white;
+    color: var(--navy);
+    border-color: white;
+}
+
+.btn-light:hover {
+    background: var(--gold-light);
+    color: var(--navy);
+}
+
+.btn-small {
+    padding: 9px 14px;
+    font-size: .8rem;
+}
+
+.btn:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =================================================
+   HERO
+   ================================================= */
+
+.hero {
+    position: relative;
+    overflow: hidden;
+    padding: 110px 0;
+    background: var(--cream);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border: 1px solid rgba(177,138,74,.16);
+    border-radius: 50%;
+    right: -260px;
+    top: -250px;
+    pointer-events: none;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.1fr .9fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3rem, 6vw, 5.2rem);
+    font-weight: normal;
+    line-height: 1.05;
+    color: var(--navy);
+    letter-spacing: -2px;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: var(--gold);
+}
+
+.hero p {
+    max-width: 530px;
+    color: var(--muted);
+    font-size: 1.05rem;
+    margin-bottom: 30px;
+}
+
+.hero-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.hero-visual {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dashboard {
+    background: white;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+    width: 100%;
+    max-width: 420px;
+    padding: 25px;
+    border-radius: 5px;
+    animation: float 5s ease-in-out infinite;
+}
+
+.dashboard-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.dashboard-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    color: var(--navy);
+}
+
+.status {
+    color: var(--success);
+    font-size: .7rem;
+    font-weight: bold;
+    background: #e6f3eb;
+    padding: 5px 9px;
+    border-radius: 20px;
+}
+
+.dashboard-label {
+    color: var(--muted);
+    font-size: .75rem;
+    margin-bottom: 3px;
+}
+
+.dashboard-amount {
+    font-family: var(--serif);
+    color: var(--navy);
+    font-size: 2.3rem;
+    margin-bottom: 20px;
+}
+
+.dashboard-line {
+    height: 9px;
+    border-radius: 10px;
+    background: #e9edf1;
+    margin-bottom: 10px;
+}
+
+.dashboard-line.gold {
+    background: var(--gold);
+    width: 70%;
+}
+
+.dashboard-line.blue {
+    background: var(--navy-light);
+    width: 88%;
+}
+
+.dashboard-line.short {
+    width: 48%;
+}
+
+.dashboard-row {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid var(--border);
+    padding-top: 15px;
+    margin-top: 15px;
+    font-size: .85rem;
+}
+
+.dashboard-row strong {
+    color: var(--navy);
+}
+
+@keyframes float {
+    0%,100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
+
+/* =================================================
+   TARJETAS DE HERRAMIENTAS
+   ================================================= */
+
+.tools-grid {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 20px;
+    margin-top: 45px;
+}
+
+.tool-card {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    transition: transform .25s, box-shadow .25s;
+}
+
+.tool-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow);
+}
+
+.tool-icon {
+    width: 44px;
+    height: 44px;
+    background: var(--gold-light);
+    color: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    border-radius: 3px;
+}
+
+.tool-card h3 {
+    font-family: var(--serif);
+    color: var(--navy);
+    font-weight: normal;
+    font-size: 1.3rem;
+    margin-bottom: 12px;
+}
+
+.tool-card p {
+    color: var(--muted);
+    font-size: .88rem;
+    margin-bottom: 20px;
+    flex-grow: 1;
+}
+
+.tool-status {
+    display: inline-block;
+    font-size: .7rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    color: var(--success);
+}
+
+.tool-status.soon {
+    color: var(--gold);
+}
+
+.tool-card .btn {
+    width: 100%;
+}
+
+/* =================================================
+   MODALES Y HERRAMIENTAS
+   ================================================= */
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(10,20,32,.72);
+    overflow-y: auto;
+    padding: 25px 0;
+}
+
+.modal.open {
+    display: block;
+}
+
+.modal-box {
+    width: 92%;
+    max-width: 900px;
+    background: var(--white);
+    margin: 25px auto;
+    border-radius: 5px;
+    box-shadow: 0 20px 80px rgba(0,0,0,.2);
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 25px 30px;
+    border-bottom: 1px solid var(--border);
+}
+
+.modal-header h2 {
+    font-family: var(--serif);
+    font-weight: normal;
+    color: var(--navy);
+    font-size: 1.7rem;
+}
+
+.close-modal {
+    background: transparent;
+    border: 0;
+    font-size: 1.8rem;
+    color: var(--muted);
+}
+
+.modal-body {
+    padding: 30px;
+}
+
+.tool-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    display: block;
+    font-size: .8rem;
+    font-weight: bold;
+    color: var(--navy);
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    border: 1px solid var(--border);
+    background: #fcfbf8;
+    color: var(--text);
+    padding: 11px;
+    border-radius: 3px;
+}
+
+.form-group textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    border-color: var(--gold);
+    outline: 2px solid rgba(177,138,74,.15);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.form-help {
+    color: var(--muted);
+    font-size: .75rem;
+    margin-top: 4px;
+}
+
+.form-error {
+    color: var(--danger);
+    font-size: .8rem;
+    margin-bottom: 15px;
+    min-height: 20px;
+}
+
+.form-success {
+    color: var(--success);
+    font-size: .8rem;
+    margin-bottom: 15px;
+    min-height: 20px;
+}
+
+.form-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.result-box {
+    background: var(--cream);
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 4px;
+}
+
+.result-box h3 {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: var(--navy);
+    margin-bottom: 20px;
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: .88rem;
+}
+
+.result-row span {
+    color: var(--muted);
+}
+
+.result-row strong {
+    color: var(--navy);
+    text-align: right;
+}
+
+.result-total {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid var(--navy);
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: var(--navy);
+}
+
+.notice {
+    background: #f7f1e7;
+    color: #725b37;
+    border-left: 3px solid var(--gold);
+    padding: 12px 15px;
+    font-size: .78rem;
+    margin-top: 20px;
+}
+
+.saved-notice {
+    background: #e8f4ed;
+    color: var(--success);
+    padding: 10px 13px;
+    font-size: .78rem;
+    margin-bottom: 20px;
+    display: none;
+}
+
+.saved-notice.show {
+    display: block;
+}
+
+/* =================================================
+   SOBRE
+   ================================================= */
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.about p {
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+.about-list {
+    list-style: none;
+    margin-top: 25px;
+}
+
+.about-list li {
+    margin-bottom: 12px;
+    font-size: .9rem;
+}
+
+.about-list li::before {
+    content: "—";
+    color: var(--gold);
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.about-card {
+    background: var(--navy);
+    color: white;
+    padding: 45px;
+    position: relative;
+    border-radius: 3px;
+}
+
+.about-card::before {
+    content: "";
+    position: absolute;
+    inset: 15px;
+    border: 1px solid rgba(177,138,74,.5);
+    pointer-events: none;
+}
+
+.about-card-inner {
+    position: relative;
+    z-index: 1;
+}
+
+.about-card h3 {
+    font-family: var(--serif);
+    font-weight: normal;
+    font-size: 2rem;
+    margin-bottom: 18px;
+}
+
+.about-card p {
+    color: #ccd5df;
+    margin: 0;
+}
+
+/* =================================================
+   FUNCIONES GRATUITAS
+   ================================================= */
+
+.free-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.free-item {
+    background: white;
+    border: 1px solid var(--border);
+    padding: 25px;
+    border-radius: 4px;
+}
+
+.free-item h3 {
+    font-family: var(--serif);
+    color: var(--navy);
+    font-weight: normal;
+    margin-bottom: 10px;
+}
+
+.free-item p {
+    color: var(--muted);
+    font-size: .88rem;
+}
+
+/* =================================================
+   PREMIUM
+   ================================================= */
+
+.premium {
+    background: var(--navy);
+    color: white;
+}
+
+.premium .section-title {
+    color: white;
+}
+
+.premium .section-subtitle {
+    color: #ccd5df;
+}
+
+.premium-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+    margin-top: 40px;
+}
+
+.premium-card {
+    border: 1px solid rgba(255,255,255,.2);
+    padding: 30px;
+    border-radius: 4px;
+}
+
+.premium-card.featured {
+    border-color: var(--gold);
+}
+
+.premium-card h3 {
+    font-family: var(--serif);
+    font-weight: normal;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.premium-card p {
+    color: #ccd5df;
+    font-size: .9rem;
+}
+
+.premium-list {
+    list-style: none;
+    margin: 20px 0;
+}
+
+.premium-list li {
+    margin-bottom: 10px;
+    color: #dce4ec;
+    font-size: .9rem;
+}
+
+.premium-list li::before {
+    content: "✓";
+    color: var(--gold);
+    margin-right: 10px;
+}
+
+/* =================================================
+   FAQ
+   ================================================= */
+
+.faq-list {
+    max-width: 800px;
+    margin: 40px auto 0;
+}
+
+.faq-item {
+    border-bottom: 1px solid var(--border);
+}
+
+.faq-question {
+    width: 100%;
+    background: transparent;
+    border: 0;
+    text-align: left;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    color: var(--navy);
+    font-weight: bold;
+    font-size: .95rem;
+}
+
+.faq-question span {
+    color: var(--gold);
+    font-size: 1.3rem;
+}
+
+.faq-answer {
+    display: none;
+    color: var(--muted);
+    font-size: .9rem;
+    padding: 0 0 20px;
+}
+
+.faq-item.open .faq-answer {
+    display: block;
+}
+
+/* =================================================
+   CTA Y FOOTER
+   ================================================= */
+
+.cta {
+    background: var(--cream);
+    text-align: center;
+    padding: 90px 0;
+    border-top: 1px solid var(--border);
+}
+
+.cta p {
+    color: var(--muted);
+    max-width: 600px;
+    margin: 0 auto 25px;
+}
+
+.footer {
+    background: #0d1d30;
+    color: #ccd5df;
+    padding: 40px 0 25px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
+    padding-bottom: 30px;
+}
+
+.footer h3 {
+    color: white;
+    font-family: var(--serif);
+    font-weight: normal;
+    margin-bottom: 12px;
+}
+
+.footer p,
+.footer a {
+    color: #9caabd;
+    font-size: .85rem;
+}
+
+.footer a:hover {
+    color: white;
+}
+
+.footer-links {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-bottom {
+    border-top: 1px solid rgba(255,255,255,.1);
+    padding-top: 20px;
+    text-align: center;
+    color: #9caabd;
+    font-size: .78rem;
+}
+
+/* =================================================
+   ANIMACIONES
+   ================================================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity .7s ease, transform .7s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* =================================================
+   RESPONSIVE
+   ================================================= */
+
+@media (max-width: 950px) {
+
+    .hero-grid,
+    .about-grid {
+        gap: 40px;
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+}
+
+@media (max-width: 750px) {
+
+    .menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        width: 100%;
+        background: var(--cream);
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .nav-links.open {
+        display: flex;
+    }
+
+    .nav-links li {
+        border-top: 1px solid var(--border);
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 15px 5%;
+    }
+
+    .nav-button {
+        border: 0;
+    }
+
+    .hero-grid,
+    .about-grid,
+    .tool-layout,
+    .premium-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero {
+        padding: 75px 0;
+    }
+
+    .hero-content {
+        text-align: center;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero h1 {
+        font-size: 3.2rem;
+    }
+
+    .hero-visual {
+        margin-top: 15px;
+    }
+
+    .section {
+        padding: 65px 0;
+    }
+
+    .free-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
+    .modal-header {
+        padding: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.35rem;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .hero h1 {
+        font-size: 2.7rem;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .tools-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    .about-card {
+        padding: 35px 30px;
+    }
+}
+
+@media print {
+
+    body * {
+        visibility: hidden;
+    }
+
+    #printArea,
+    #printArea * {
+        visibility: visible;
+    }
+
+    #printArea {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        padding: 20px;
+    }
+
+    .print-hide {
+        display: none !important;
+    }
+
+    .modal {
+        position: static;
+        background: white;
+        padding: 0;
+    }
+
+    .modal-box {
+        width: 100%;
+        max-width: none;
+        box-shadow: none;
+        margin: 0;
+    }
+
+    .modal-body {
+        padding: 0;
+    }
+
+    .result-box {
+        border: 1px solid #ccc;
+        background: white;
+    }
+}
+
+</style>
 </head>
-
 
 <body>
 
+<!-- =================================================
+     CABECERA
+     ================================================= -->
 
-    <!-- =========================================
-         CABECERA
-         ========================================= -->
+<header class="header">
 
-    <header class="cabecera">
+    <div class="contenedor nav">
 
-        <div class="contenedor nav">
+        <a href="#inicio" class="logo">
+            NE<span>X</span>O
+        </a>
 
-            <!-- NOMBRE DE LA WEB -->
+        <button
+            class="menu-button"
+            id="menuButton"
+            aria-label="Abrir menú"
+            aria-expanded="false"
+            aria-controls="navLinks">
+            ☰
+        </button>
 
-            <a href="#inicio" class="logo">
-                NE<span>X</span>O
-            </a>
+        <nav>
+            <ul class="nav-links" id="navLinks">
+
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#herramientas">Herramientas</a></li>
+                <li><a href="#sobre">Sobre NEXO</a></li>
+                <li><a href="#premium">Premium</a></li>
+                <li><a href="#faq">Preguntas frecuentes</a></li>
+                <li><a href="#contacto" class="nav-button">Contacto</a></li>
+
+            </ul>
+        </nav>
+
+    </div>
+
+</header>
 
 
-            <!-- MENÚ MÓVIL -->
+<!-- =================================================
+     CONTENIDO PRINCIPAL
+     ================================================= -->
 
-            <button
-                class="boton-menu"
-                id="botonMenu"
-                aria-label="Abrir menú"
-                aria-expanded="false"
-                aria-controls="enlaces">
+<main>
 
-                ☰
+<!-- HERO -->
 
-            </button>
+<section class="hero" id="inicio">
 
+    <div class="contenedor hero-grid">
 
-            <!-- NAVEGACIÓN -->
+        <div class="reveal">
 
-            <nav>
+            <span class="eyebrow">
+                Herramientas para trabajar mejor
+            </span>
 
-                <ul class="enlaces" id="enlaces">
+            <h1>
+                Calcula, organiza y prepara tu trabajo desde un solo <span>lugar.</span>
+            </h1>
 
-                    <li>
-                        <a href="#inicio">Inicio</a>
-                    </li>
+            <p>
+                NEXO reúne herramientas sencillas para ayudarte a
+                preparar presupuestos, calcular precios, controlar
+                gastos y entender mejor los resultados de tu trabajo.
+            </p>
 
-                    <li>
-                        <a href="#funciones">Funciones</a>
-                    </li>
+            <div class="hero-actions">
 
-                    <li>
-                        <a href="#sobre">Sobre NEXO</a>
-                    </li>
+                <a href="#herramientas" class="btn btn-gold">
+                    Empezar gratis →
+                </a>
 
-                    <li>
-                        <a href="#contacto" class="enlace-boton">
-                            Contacto
-                        </a>
-                    </li>
+                <a href="#premium" class="btn btn-outline">
+                    Ver Premium
+                </a>
 
-                </ul>
-
-            </nav>
+            </div>
 
         </div>
 
-    </header>
 
+        <div class="hero-visual reveal">
 
-    <!-- =========================================
-         PORTADA
-         ========================================= -->
+            <div class="dashboard">
 
-    <main>
+                <div class="dashboard-top">
 
-        <section class="hero" id="inicio">
+                    <div class="dashboard-title">
+                        Resumen de ejemplo
+                    </div>
 
-            <div class="contenedor hero-contenido">
-
-
-                <div class="aparecer">
-
-                    <span class="etiqueta">
-                        Una nueva forma de conectar
+                    <span class="status">
+                        DEMO
                     </span>
 
+                </div>
 
-                    <h1>
-                        El punto de unión entre
-                        <span>tus ideas.</span>
-                    </h1>
+                <div class="dashboard-label">
+                    Total del presupuesto
+                </div>
+
+                <div class="dashboard-amount">
+                    1.210,00 €
+                </div>
+
+                <div class="dashboard-line gold"></div>
+                <div class="dashboard-line blue"></div>
+                <div class="dashboard-line short"></div>
+
+                <div class="dashboard-row">
+                    <span>Base imponible</span>
+                    <strong>1.000,00 €</strong>
+                </div>
+
+                <div class="dashboard-row">
+                    <span>IVA de ejemplo</span>
+                    <strong>210,00 €</strong>
+                </div>
+
+                <div class="dashboard-row">
+                    <span>Estado</span>
+                    <strong>Preparado</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-                    <p>
-                        NEXO nace como un espacio para descubrir
-                        nuevas posibilidades, conectar personas
-                        y convertir buenas ideas en proyectos
-                        que merecen hacerse realidad.
-                    </p>
+<!-- HERRAMIENTAS -->
+
+<section class="section section-white" id="herramientas">
+
+    <div class="contenedor">
+
+        <div class="section-subtitle center reveal">
+
+            <div class="gold-line"></div>
+
+            <h2 class="section-title">
+                Herramientas para tu día a día.
+            </h2>
+
+            <p>
+                Calculadoras sencillas para ayudarte a tomar
+                decisiones sobre precios, presupuestos y gastos.
+            </p>
+
+        </div>
 
 
-                    <div class="hero-botones">
+        <div class="tools-grid">
 
-                        <a href="#funciones" class="boton boton-dorado">
-                            Descubrir NEXO
-                            <span>→</span>
-                        </a>
 
-                        <a href="#sobre" class="boton boton-contorno">
-                            Conocer el proyecto
-                        </a>
+            <article class="tool-card reveal">
+
+                <div class="tool-icon">€</div>
+
+                <h3>NEXO Presupuestos</h3>
+
+                <p>
+                    Prepara presupuestos con cantidades, precios,
+                    descuentos, impuestos y gastos adicionales.
+                </p>
+
+                <span class="tool-status">● Disponible</span>
+
+                <button class="btn btn-small" data-tool="presupuesto">
+                    Abrir herramienta
+                </button>
+
+            </article>
+
+
+            <article class="tool-card reveal">
+
+                <div class="tool-icon">⌁</div>
+
+                <h3>Precio por hora</h3>
+
+                <p>
+                    Calcula cuánto necesitas cobrar por hora según
+                    tus ingresos deseados, gastos y horas facturables.
+                </p>
+
+                <span class="tool-status">● Disponible</span>
+
+                <button class="btn btn-small" data-tool="hora">
+                    Abrir herramienta
+                </button>
+
+            </article>
+
+
+            <article class="tool-card reveal">
+
+                <div class="tool-icon">↗</div>
+
+                <h3>Beneficio y margen</h3>
+
+                <p>
+                    Comprueba el beneficio de una venta y qué
+                    porcentaje representa sobre el precio.
+                </p>
+
+                <span class="tool-status">● Disponible</span>
+
+                <button class="btn btn-small" data-tool="beneficio">
+                    Abrir herramienta
+                </button>
+
+            </article>
+
+
+            <article class="tool-card reveal">
+
+                <div class="tool-icon">▤</div>
+
+                <h3>Calculadora de gastos</h3>
+
+                <p>
+                    Añade diferentes gastos y calcula su coste
+                    mensual y anual.
+                </p>
+
+                <span class="tool-status">● Disponible</span>
+
+                <button class="btn btn-small" data-tool="gastos">
+                    Abrir herramienta
+                </button>
+
+            </article>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- SOBRE NEXO -->
+
+<section class="section" id="sobre">
+
+    <div class="contenedor about-grid">
+
+        <div class="reveal">
+
+            <div class="gold-line"></div>
+
+            <h2 class="section-title">
+                Una base para organizar mejor tus ideas.
+            </h2>
+
+            <p>
+                NEXO es un proyecto que busca reunir herramientas
+                digitales sencillas en un mismo lugar.
+            </p>
+
+            <p>
+                Esta primera versión está enfocada en autónomos,
+                freelancers y pequeños negocios que necesitan
+                calcular precios, organizar gastos y preparar
+                presupuestos sin complicaciones.
+            </p>
+
+            <ul class="about-list">
+
+                <li>Herramientas fáciles de utilizar.</li>
+                <li>Sin registro para las funciones básicas.</li>
+                <li>Diseño pensado para móviles.</li>
+                <li>Datos guardados localmente.</li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="about-card reveal">
+
+            <div class="about-card-inner">
+
+                <h3>
+                    NEXO
+                </h3>
+
+                <p>
+                    Un punto de conexión entre tus ideas,
+                    tus números y tu trabajo diario.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FUNCIONES GRATUITAS -->
+
+<section class="section section-white">
+
+    <div class="contenedor">
+
+        <div class="section-subtitle center reveal">
+
+            <div class="gold-line"></div>
+
+            <h2 class="section-title">
+                Lo esencial, sin complicaciones.
+            </h2>
+
+            <p>
+                La primera versión de NEXO ofrece herramientas
+                básicas que puedes utilizar directamente
+                desde el navegador.
+            </p>
+
+        </div>
+
+
+        <div class="free-grid">
+
+            <article class="free-item reveal">
+                <h3>Calculadoras básicas</h3>
+                <p>
+                    Calcula precios, beneficios, márgenes y gastos
+                    sin necesidad de registrarte.
+                </p>
+            </article>
+
+            <article class="free-item reveal">
+                <h3>Presupuestos</h3>
+                <p>
+                    Prepara un resumen de trabajo con cantidades,
+                    descuentos, IVA y total.
+                </p>
+            </article>
+
+            <article class="free-item reveal">
+                <h3>Uso desde el móvil</h3>
+                <p>
+                    Accede a las herramientas desde tu teléfono,
+                    tablet u ordenador.
+                </p>
+            </article>
+
+            <article class="free-item reveal">
+                <h3>Impresión</h3>
+                <p>
+                    Imprime los resultados o guárdalos como PDF
+                    utilizando el navegador.
+                </p>
+            </article>
+
+            <article class="free-item reveal">
+                <h3>Guardado local</h3>
+                <p>
+                    Conserva los datos de tu último presupuesto
+                    en el navegador del dispositivo.
+                </p>
+            </article>
+
+            <article class="free-item reveal">
+                <h3>Sin servidores</h3>
+                <p>
+                    Los cálculos de esta versión se realizan
+                    directamente en tu navegador.
+                </p>
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- PREMIUM -->
+
+<section class="section premium" id="premium">
+
+    <div class="contenedor">
+
+        <div class="section-subtitle center reveal">
+
+            <div class="gold-line"></div>
+
+            <h2 class="section-title">
+                Más posibilidades con NEXO Premium.
+            </h2>
+
+            <p>
+                Una futura versión con herramientas adicionales
+                para quienes necesitan organizar más trabajo.
+            </p>
+
+        </div>
+
+
+        <div class="premium-grid">
+
+            <article class="premium-card featured reveal">
+
+                <h3>Presupuestos profesionales</h3>
+
+                <p>
+                    Una futura herramienta para preparar documentos
+                    más completos y personalizados.
+                </p>
+
+                <ul class="premium-list">
+
+                    <li>Personalización con nombre y logotipo.</li>
+                    <li>Plantillas de presupuestos.</li>
+                    <li>Varios presupuestos guardados.</li>
+                    <li>Historial de documentos.</li>
+
+                </ul>
+
+                <button class="btn btn-gold btn-small" data-premium="presupuestos">
+                    Próximamente
+                </button>
+
+            </article>
+
+
+            <article class="premium-card reveal">
+
+                <h3>Herramientas exclusivas</h3>
+
+                <p>
+                    Funciones que podremos añadir cuando NEXO
+                    evolucione y se definan sus necesidades.
+                </p>
+
+                <ul class="premium-list">
+
+                    <li>Exportación avanzada.</li>
+                    <li>Organización de proyectos.</li>
+                    <li>Herramientas adicionales.</li>
+                    <li>Eliminación de límites.</li>
+
+                </ul>
+
+                <button class="btn btn-light btn-small" data-premium="exclusivas">
+                    Ver funciones
+                </button>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- FAQ -->
+
+<section class="section section-white" id="faq">
+
+    <div class="contenedor">
+
+        <div class="section-subtitle center reveal">
+
+            <div class="gold-line"></div>
+
+            <h2 class="section-title">
+                Preguntas frecuentes.
+            </h2>
+
+            <p>
+                Respuestas a las dudas más habituales sobre NEXO.
+            </p>
+
+        </div>
+
+
+        <div class="faq-list">
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+                    ¿Qué es NEXO?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    NEXO es una plataforma de demostración con
+                    herramientas para calcular precios, preparar
+                    presupuestos, organizar gastos y analizar
+                    beneficios.
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+                    ¿Es gratis?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    Las herramientas básicas de esta versión
+                    son gratuitas y no requieren registro.
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+                    ¿Necesito registrarme?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    No. Puedes utilizar las herramientas básicas
+                    directamente desde el navegador.
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+                    ¿Se guardan mis datos?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    Los datos guardados mediante esta versión
+                    se almacenan únicamente en el navegador
+                    del dispositivo. No se envían a servidores.
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+                    ¿Puedo utilizarlo desde el móvil?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    Sí. El diseño se adapta a móviles, tablets
+                    y ordenadores.
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+                    ¿Los cálculos fiscales son oficiales?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    No. Los cálculos son orientativos. Comprueba
+                    los impuestos y requisitos aplicables a tu
+                    país o situación.
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+                    ¿Qué incluirá Premium?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    Está previsto estudiar funciones como
+                    presupuestos personalizados, plantillas,
+                    historial y herramientas adicionales.
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+                    ¿Puedo guardar mis presupuestos?
+                    <span>+</span>
+                </button>
+
+                <div class="faq-answer">
+                    Sí. Puedes guardar localmente el último
+                    presupuesto y recuperarlo desde el mismo
+                    navegador y dispositivo.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- CTA -->
+
+<section class="cta" id="contacto">
+
+    <div class="contenedor reveal">
+
+        <h2 class="section-title">
+            Empieza a organizar tu trabajo.
+        </h2>
+
+        <p>
+            Prueba las herramientas de NEXO y descubre cómo
+            puedes calcular tus precios y presupuestos
+            de forma más sencilla.
+        </p>
+
+        <a href="#herramientas" class="btn btn-gold">
+            Explorar herramientas →
+        </a>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- =================================================
+     FOOTER
+     ================================================= -->
+
+<footer class="footer">
+
+    <div class="contenedor">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>NEXO</h3>
+
+                <p>
+                    Herramientas digitales sencillas para
+                    organizar precios, presupuestos y gastos.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h3>Navegación</h3>
+
+                <ul class="footer-links">
+
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#herramientas">Herramientas</a></li>
+                    <li><a href="#sobre">Sobre NEXO</a></li>
+                    <li><a href="#premium">Premium</a></li>
+
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h3>Información</h3>
+
+                <ul class="footer-links">
+
+                    <li><a href="#faq">Preguntas frecuentes</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#privacidad">Privacidad</a></li>
+                    <li><a href="#legal">Aviso legal</a></li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © <span id="year"></span> NEXO.
+                Algunas funciones están en desarrollo.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =================================================
+     MODAL: PRESUPUESTOS
+     ================================================= -->
+
+<div class="modal" id="modalPresupuesto" role="dialog" aria-modal="true" aria-labelledby="tituloPresupuesto">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="tituloPresupuesto">
+                NEXO Presupuestos
+            </h2>
+
+            <button class="close-modal" data-close="modalPresupuesto" aria-label="Cerrar">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="saved-notice" id="savedNotice">
+                Presupuesto guardado localmente.
+            </div>
+
+            <div class="tool-layout">
+
+                <div>
+
+                    <div class="form-group">
+                        <label for="businessName">Nombre del negocio</label>
+                        <input id="businessName" type="text" placeholder="Mi negocio">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="clientName">Nombre del cliente</label>
+                        <input id="clientName" type="text" placeholder="Cliente">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="workDescription">Descripción del trabajo</label>
+                        <textarea id="workDescription" placeholder="Descripción del servicio"></textarea>
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="quantity">Cantidad</label>
+                            <input id="quantity" type="number" min="0" step="0.01" value="1">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="unitPrice">Precio unitario (€)</label>
+                            <input id="unitPrice" type="number" min="0" step="0.01" value="100">
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="discount">Descuento (%)</label>
+                            <input id="discount" type="number" min="0" max="100" step="0.01" value="0">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="extraExpenses">Gastos adicionales (€)</label>
+                            <input id="extraExpenses" type="number" min="0" step="0.01" value="0">
+                        </div>
+
+                    </div>
+
+                    <div class="form-row">
+
+                        <div class="form-group">
+                            <label for="iva">IVA (%)</label>
+                            <input id="iva" type="number" min="0" step="0.01" value="21">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="irpf">IRPF opcional (%)</label>
+                            <input id="irpf" type="number" min="0" step="0.01" value="0">
+                        </div>
+
+                    </div>
+
+                    <div class="form-error" id="budgetError" role="alert"></div>
+
+                    <div class="form-actions">
+
+                        <button class="btn btn-gold" id="calculateBudget">
+                            Calcular
+                        </button>
+
+                        <button class="btn btn-outline" id="clearBudget">
+                            Limpiar
+                        </button>
+
+                        <button class="btn btn-outline" id="saveBudget">
+                            Guardar
+                        </button>
+
+                        <button class="btn btn-outline" id="loadBudget">
+                            Recuperar
+                        </button>
 
                     </div>
 
                 </div>
 
 
-                <!-- ILUSTRACIÓN CSS -->
+                <div>
 
-                <div class="ilustracion">
+                    <div class="result-box" id="budgetResult">
 
-                    <div class="marco">
+                        <h3>Resumen del presupuesto</h3>
 
-                        <div class="decoracion decoracion-1"></div>
+                        <div class="result-row">
+                            <span>Subtotal</span>
+                            <strong id="rSubtotal">0,00 €</strong>
+                        </div>
 
-                        <div class="decoracion decoracion-2"></div>
+                        <div class="result-row">
+                            <span>Descuento</span>
+                            <strong id="rDiscount">0,00 €</strong>
+                        </div>
 
-                        <div class="simbolo">
+                        <div class="result-row">
+                            <span>Base imponible</span>
+                            <strong id="rBase">0,00 €</strong>
+                        </div>
 
-                            <div class="simbolo-letra">
-                                N
+                        <div class="result-row">
+                            <span>IVA</span>
+                            <strong id="rIva">0,00 €</strong>
+                        </div>
+
+                        <div class="result-row">
+                            <span>IRPF</span>
+                            <strong id="rIrpf">0,00 €</strong>
+                        </div>
+
+                        <div class="result-row">
+                            <span>Gastos adicionales</span>
+                            <strong id="rExpenses">0,00 €</strong>
+                        </div>
+
+                        <div class="result-total">
+                            <span>Total</span>
+                            <strong id="rTotal">0,00 €</strong>
+                        </div>
+
+                    </div>
+
+                    <div class="form-actions print-hide">
+
+                        <button class="btn btn-outline" id="copyBudget">
+                            Copiar resultado
+                        </button>
+
+                        <button class="btn btn-gold" id="printBudget">
+                            Imprimir / PDF
+                        </button>
+
+                    </div>
+
+                    <div class="notice">
+                        Los cálculos son orientativos. Comprueba los
+                        impuestos y requisitos aplicables a tu país
+                        o situación.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     MODAL: PRECIO POR HORA
+     ================================================= -->
+
+<div class="modal" id="modalHora" role="dialog" aria-modal="true" aria-labelledby="tituloHora">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="tituloHora">
+                Calculadora de precio por hora
+            </h2>
+
+            <button class="close-modal" data-close="modalHora" aria-label="Cerrar">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="tool-layout">
+
+                <div>
+
+                    <div class="form-group">
+                        <label for="monthlyIncome">Ingresos mensuales deseados (€)</label>
+                        <input id="monthlyIncome" type="number" min="0" step="0.01" value="2000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="monthlyCosts">Gastos mensuales (€)</label>
+                        <input id="monthlyCosts" type="number" min="0" step="0.01" value="500">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="billableHours">Horas facturables al mes</label>
+                        <input id="billableHours" type="number" min="0.01" step="0.01" value="80">
+                        <p class="form-help">
+                            No todas las horas trabajadas se pueden facturar.
+                        </p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="hourReserve">Margen o reserva adicional (%)</label>
+                        <input id="hourReserve" type="number" min="0" step="0.01" value="10">
+                    </div>
+
+                    <div class="form-error" id="hourError" role="alert"></div>
+
+                    <button class="btn btn-gold" id="calculateHour">
+                        Calcular precio
+                    </button>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <h3>Resultado</h3>
+
+                    <div class="result-row">
+                        <span>Ingresos necesarios</span>
+                        <strong id="hNeeded">0,00 €</strong>
+                    </div>
+
+                    <div class="result-row">
+                        <span>Precio mínimo por hora</span>
+                        <strong id="hMinimum">0,00 €</strong>
+                    </div>
+
+                    <div class="result-total">
+                        <span>Precio recomendado</span>
+                        <strong id="hRecommended">0,00 €</strong>
+                    </div>
+
+                    <div class="notice">
+                        El precio recomendado incluye la reserva adicional
+                        indicada. Es una estimación, no una garantía de ingresos.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     MODAL: BENEFICIO
+     ================================================= -->
+
+<div class="modal" id="modalBeneficio" role="dialog" aria-modal="true" aria-labelledby="tituloBeneficio">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="tituloBeneficio">
+                Calculadora de beneficio y margen
+            </h2>
+
+            <button class="close-modal" data-close="modalBeneficio" aria-label="Cerrar">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="tool-layout">
+
+                <div>
+
+                    <div class="form-group">
+                        <label for="salePrice">Precio de venta (€)</label>
+                        <input id="salePrice" type="number" min="0" step="0.01" value="100">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="productCost">Coste del producto o servicio (€)</label>
+                        <input id="productCost" type="number" min="0" step="0.01" value="40">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="otherCosts">Otros gastos (€)</label>
+                        <input id="otherCosts" type="number" min="0" step="0.01" value="10">
+                    </div>
+
+                    <div class="form-error" id="profitError" role="alert"></div>
+
+                    <button class="btn btn-gold" id="calculateProfit">
+                        Calcular beneficio
+                    </button>
+
+                </div>
+
+
+                <div class="result-box">
+
+                    <h3>Resultado</h3>
+
+                    <div class="result-row">
+                        <span>Ingresos totales</span>
+                        <strong id="pRevenue">0,00 €</strong>
+                    </div>
+
+                    <div class="result-row">
+                        <span>Costes totales</span>
+                        <strong id="pCosts">0,00 €</strong>
+                    </div>
+
+                    <div class="result-row">
+                        <span>Beneficio</span>
+                        <strong id="pProfit">0,00 €</strong>
+                    </div>
+
+                    <div class="result-total">
+                        <span>Margen</span>
+                        <strong id="pMargin">0,00 %</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     MODAL: GASTOS
+     ================================================= -->
+
+<div class="modal" id="modalGastos" role="dialog" aria-modal="true" aria-labelledby="tituloGastos">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="tituloGastos">
+                Calculadora de gastos
+            </h2>
+
+            <button class="close-modal" data-close="modalGastos" aria-label="Cerrar">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <div class="tool-layout">
+
+                <div>
+
+                    <p class="form-help" style="margin-bottom:20px;">
+                        Añade los gastos mensuales que quieras controlar.
+                    </p>
+
+                    <div id="expenseRows">
+
+                        <div class="form-row expense-row">
+
+                            <div class="form-group">
+                                <label>Concepto</label>
+                                <input type="text" class="expense-name" value="Alquiler">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Importe mensual (€)</label>
+                                <input type="number" class="expense-value" min="0" step="0.01" value="0">
+                            </div>
+
+                        </div>
+
+                        <div class="form-row expense-row">
+
+                            <div class="form-group">
+                                <label>Concepto</label>
+                                <input type="text" class="expense-name" value="Materiales">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Importe mensual (€)</label>
+                                <input type="number" class="expense-value" min="0" step="0.01" value="0">
+                            </div>
+
+                        </div>
+
+                        <div class="form-row expense-row">
+
+                            <div class="form-group">
+                                <label>Concepto</label>
+                                <input type="text" class="expense-name" value="Software">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Importe mensual (€)</label>
+                                <input type="number" class="expense-value" min="0" step="0.01" value="0">
+                            </div>
+
+                        </div>
+
+                        <div class="form-row expense-row">
+
+                            <div class="form-group">
+                                <label>Concepto</label>
+                                <input type="text" class="expense-name" value="Transporte">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Importe mensual (€)</label>
+                                <input type="number" class="expense-value" min="0" step="0.01" value="0">
+                            </div>
+
+                        </div>
+
+                        <div class="form-row expense-row">
+
+                            <div class="form-group">
+                                <label>Concepto</label>
+                                <input type="text" class="expense-name" value="Publicidad">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Importe mensual (€)</label>
+                                <input type="number" class="expense-value" min="0" step="0.01" value="0">
                             </div>
 
                         </div>
 
                     </div>
 
-                </div>
+                    <button class="btn btn-outline btn-small" id="addExpense">
+                        + Añadir gasto
+                    </button>
 
-            </div>
+                    <div class="form-error" id="expenseError" role="alert"></div>
 
-        </section>
+                    <div class="form-actions">
 
+                        <button class="btn btn-gold" id="calculateExpenses">
+                            Calcular gastos
+                        </button>
 
-        <!-- =========================================
-             FUNCIONES
-             ========================================= -->
+                        <button class="btn btn-outline" id="clearExpenses">
+                            Limpiar
 
-        <section class="seccion seccion-blanca" id="funciones">
-
-            <div class="contenedor">
-
-
-                <div class="seccion-cabecera centrada aparecer">
-
-                    <div class="linea-dorada"></div>
-
-                    <h2>
-                        Un espacio pensado para avanzar.
-                    </h2>
-
-                    <p>
-                        Esta estructura es una demostración
-                        de las posibilidades que puede ofrecer
-                        NEXO cuando definamos su servicio.
-                    </p>
-
-                </div>
-
-
-                <div class="tarjetas">
-
-
-                    <article class="tarjeta aparecer">
-
-                        <div class="tarjeta-numero">
-                            01
-                        </div>
-
-                        <h3>
-                            Conexión
-                        </h3>
-
-                        <p>
-                            Un punto de encuentro donde las ideas,
-                            las personas y las oportunidades
-                            puedan relacionarse de una forma
-                            sencilla y útil.
-                        </p>
-
-                    </article>
-
-
-                    <article class="tarjeta aparecer">
-
-                        <div class="tarjeta-numero">
-                            02
-                        </div>
-
-                        <h3>
-                            Organización
-                        </h3>
-
-                        <p>
-                            Herramientas y recursos para reunir
-                            información, descubrir posibilidades
-                            y trabajar en proyectos con mayor
-                            claridad.
-                        </p>
-
-                    </article>
-
-
-                    <article class="tarjeta aparecer">
-
-                        <div class="tarjeta-numero">
-                            03
-                        </div>
-
-                        <h3>
-                            Evolución
-                        </h3>
-
-                        <p>
-                            Una base preparada para crecer
-                            y adaptarse a las necesidades
-                            de las personas que utilicen
-                            NEXO en el futuro.
-                        </p>
-
-                    </article>
-
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================================
-             SOBRE EL PROYECTO
-             ========================================= -->
-
-        <section class="seccion" id="sobre">
-
-            <div class="contenedor sobre-contenido">
-
-
-                <div class="aparecer">
-
-                    <div class="linea-dorada"></div>
-
-                    <h2>
-                        Las grandes ideas empiezan
-                        con una conexión.
-                    </h2>
-
-                    <p>
-                        NEXO es un proyecto en construcción.
-                        Su objetivo es crear un espacio digital
-                        que tenga utilidad real y que sea fácil
-                        de utilizar.
-                    </p>
-
-                    <p>
-                        Esta primera versión sirve como punto
-                        de partida. A partir de aquí podremos
-                        definir el servicio, añadir funciones
-                        y convertir la idea en una web real.
-                    </p>
-
-
-                    <ul class="lista">
-
-                        <li>
-                            Diseño sencillo y profesional.
-                        </li>
-
-                        <li>
-                            Experiencia clara para el usuario.
-                        </li>
-
-                        <li>
-                            Preparado para crecer.
-                        </li>
-
-                    </ul>
-
-                </div>
-
-
-                <div class="sobre-destacado aparecer">
-
-                    <div class="sobre-destacado-contenido">
-
-                        <h3>
-                            NEXO
-                        </h3>
-
-                        <p>
-                            Un nombre. Una idea.
-                            Un proyecto con posibilidades.
-                        </p>
+                        </button>
 
                     </div>
 
                 </div>
 
 
-            </div>
+                <div class="result-box">
 
-        </section>
+                    <h3>Resumen de gastos</h3>
 
+                    <div class="result-row">
+                        <span>Total mensual</span>
+                        <strong id="eMonthly">0,00 €</strong>
+                    </div>
 
-        <!-- =========================================
-             CONTACTO / LLAMADA A LA ACCIÓN
-             ========================================= -->
+                    <div class="result-total">
+                        <span>Total anual</span>
+                        <strong id="eAnnual">0,00 €</strong>
+                    </div>
 
-        <section class="cta" id="contacto">
+                    <div id="expenseBreakdown" style="margin-top:20px;"></div>
 
-            <div class="contenedor aparecer">
-
-                <h2>
-                    El próximo paso empieza aquí.
-                </h2>
-
-                <p>
-                    Esta web todavía es una demostración.
-                    Cuando decidas qué ofrecerá NEXO,
-                    podremos convertirla en algo único.
-                </p>
-
-                <button class="boton boton-dorado" id="botonMensaje">
-                    Explorar posibilidades
-                    <span>→</span>
-                </button>
-
-                <p id="mensaje" style="margin-top: 20px;"></p>
+                </div>
 
             </div>
-
-        </section>
-
-
-    </main>
-
-
-    <!-- =========================================
-         PIE DE PÁGINA
-         ========================================= -->
-
-    <footer class="footer">
-
-        <div class="contenedor footer-contenido">
-
-            <div class="footer-logo">
-                NEXO
-            </div>
-
-            <p>
-                © <span id="anio"></span>
-                NEXO. Todos los derechos reservados.
-            </p>
 
         </div>
 
-    </footer>
+    </div>
+
+</div>
 
 
-    <!-- =========================================
-         JAVASCRIPT
-         ========================================= -->
+<!-- =================================================
+     MODAL: PREMIUM
+     ================================================= -->
 
-    <script>
+<div class="modal" id="modalPremium" role="dialog" aria-modal="true" aria-labelledby="tituloPremium">
 
-        /* =========================================
-           1. MENÚ MÓVIL
-           ========================================= */
+    <div class="modal-box">
 
-        const botonMenu = document.getElementById("botonMenu");
+        <div class="modal-header">
 
-        const enlaces = document.getElementById("enlaces");
+            <h2 id="tituloPremium">
+                NEXO Premium
+            </h2>
+
+            <button class="close-modal" data-close="modalPremium" aria-label="Cerrar">
+                ×
+            </button>
+
+        </div>
 
 
-        botonMenu.addEventListener("click", function () {
+        <div class="modal-body">
 
-            enlaces.classList.toggle("activo");
+            <p style="margin-bottom:20px;color:var(--muted);">
+                Estas funciones forman parte de la planificación
+                de NEXO y todavía no están disponibles.
+            </p>
 
-            const abierto = enlaces.classList.contains("activo");
+            <ul class="premium-list" style="color:var(--text);">
 
-            botonMenu.setAttribute("aria-expanded", abierto);
+                <li style="color:var(--text);">
+                    Presupuestos profesionales.
+                </li>
 
-            botonMenu.textContent = abierto ? "✕" : "☰";
+                <li style="color:var(--text);">
+                    Personalización con nombre y logotipo.
+                </li>
+
+                <li style="color:var(--text);">
+                    Plantillas e historial.
+                </li>
+
+                <li style="color:var(--text);">
+                    Varios presupuestos guardados.
+                </li>
+
+                <li style="color:var(--text);">
+                    Exportación avanzada.
+                </li>
+
+                <li style="color:var(--text);">
+                    Herramientas exclusivas.
+                </li>
+
+            </ul>
+
+            <div class="notice">
+                No hay pagos ni suscripciones activas en esta versión.
+                Esta sección es una demostración.
+            </div>
+
+            <div class="form-actions">
+
+                <button class="btn btn-gold" id="interestButton">
+                    Apuntarme a la lista de interés
+                </button>
+
+                <button class="btn btn-outline" data-close="modalPremium">
+                    Cerrar
+                </button>
+
+            </div>
+
+            <p id="interestMessage" class="form-success" style="margin-top:15px;"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     MODAL: AVISO LEGAL / PRIVACIDAD
+     ================================================= -->
+
+<div class="modal" id="modalInfo" role="dialog" aria-modal="true" aria-labelledby="tituloInfo">
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h2 id="tituloInfo">
+                Información
+            </h2>
+
+            <button class="close-modal" data-close="modalInfo" aria-label="Cerrar">
+                ×
+            </button>
+
+        </div>
+
+        <div class="modal-body">
+
+            <div id="infoContent"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- =================================================
+     JAVASCRIPT
+     ================================================= -->
+
+<script>
+
+/* =================================================
+   UTILIDADES
+   ================================================= */
+
+// Formato de euros para España.
+
+const euros = value => new Intl.NumberFormat("es-ES", {
+    style: "currency",
+    currency: "EUR"
+}).format(value);
+
+
+// Obtener números de inputs.
+
+function numberValue(id) {
+    const value = Number(document.getElementById(id).value);
+
+    return Number.isFinite(value) ? value : 0;
+}
+
+
+// Mostrar mensajes de error.
+
+function showError(id, message) {
+    document.getElementById(id).textContent = message;
+}
+
+
+// Limpiar errores.
+
+function clearError(id) {
+    document.getElementById(id).textContent = "";
+}
+
+
+// Mostrar un modal.
+
+function openModal(id) {
+    document.getElementById(id).classList.add("open");
+
+    document.body.classList.add("modal-open");
+
+    const modal = document.getElementById(id);
+
+    const firstButton = modal.querySelector("button");
+
+    if (firstButton) {
+        firstButton.focus();
+    }
+}
+
+
+// Cerrar un modal.
+
+function closeModal(id) {
+    document.getElementById(id).classList.remove("open");
+
+    if (!document.querySelector(".modal.open")) {
+        document.body.classList.remove("modal-open");
+    }
+}
+
+
+// Cerrar modales con botones.
+
+document.querySelectorAll("[data-close]").forEach(button => {
+
+    button.addEventListener("click", () => {
+        closeModal(button.dataset.close);
+    });
+
+});
+
+
+// Cerrar al hacer clic fuera del cuadro.
+
+document.querySelectorAll(".modal").forEach(modal => {
+
+    modal.addEventListener("click", event => {
+
+        if (event.target === modal) {
+            closeModal(modal.id);
+        }
+
+    });
+
+});
+
+
+// Cerrar con Escape.
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+
+        document.querySelectorAll(".modal.open").forEach(modal => {
+            closeModal(modal.id);
+        });
+
+    }
+
+});
+
+
+/* =================================================
+   MENÚ MÓVIL
+   ================================================= */
+
+const menuButton = document.getElementById("menuButton");
+const navLinks = document.getElementById("navLinks");
+
+menuButton.addEventListener("click", () => {
+
+    navLinks.classList.toggle("open");
+
+    const open = navLinks.classList.contains("open");
+
+    menuButton.setAttribute("aria-expanded", open);
+
+    menuButton.textContent = open ? "✕" : "☰";
+
+});
+
+
+navLinks.querySelectorAll("a").forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("open");
+
+        menuButton.setAttribute("aria-expanded", "false");
+
+        menuButton.textContent = "☰";
+
+    });
+
+});
+
+
+/* =================================================
+   ANIMACIONES
+   ================================================= */
+
+const revealElements = document.querySelectorAll(".reveal");
+
+if ("IntersectionObserver" in window) {
+
+    const observer = new IntersectionObserver(entries => {
+
+        entries.forEach(entry => {
+
+            if (entry.isIntersecting) {
+
+                entry.target.classList.add("visible");
+
+                observer.unobserve(entry.target);
+
+            }
 
         });
 
+    }, {
+        threshold: .12
+    });
 
-        // Cerrar menú al pulsar un enlace
+    revealElements.forEach(element => observer.observe(element));
 
-        document.querySelectorAll(".enlaces a").forEach(function (enlace) {
+} else {
 
-            enlace.addEventListener("click", function () {
+    revealElements.forEach(element => {
+        element.classList.add("visible");
+    });
 
-                enlaces.classList.remove("activo");
+}
 
-                botonMenu.setAttribute("aria-expanded", "false");
 
-                botonMenu.textContent = "☰";
+/* =================================================
+   ABRIR HERRAMIENTAS
+   ================================================= */
 
-            });
+document.querySelectorAll("[data-tool]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const tool = button.dataset.tool;
+
+        if (tool === "presupuesto") {
+            openModal("modalPresupuesto");
+        }
+
+        if (tool === "hora") {
+            openModal("modalHora");
+        }
+
+        if (tool === "beneficio") {
+            openModal("modalBeneficio");
+        }
+
+        if (tool === "gastos") {
+            openModal("modalGastos");
+        }
+
+    });
+
+});
+
+
+/* =================================================
+   PRESUPUESTOS
+   ================================================= */
+
+// Guardamos el último resultado calculado.
+
+let lastBudget = null;
+
+
+function calculateBudget() {
+
+    clearError("budgetError");
+
+    const quantity = numberValue("quantity");
+    const unitPrice = numberValue("unitPrice");
+    const discountPercent = numberValue("discount");
+    const extraExpenses = numberValue("extraExpenses");
+    const ivaPercent = numberValue("iva");
+    const irpfPercent = numberValue("irpf");
+
+
+    // Validación de datos.
+
+    if (quantity <= 0) {
+        showError("budgetError", "La cantidad debe ser mayor que cero.");
+        return null;
+    }
+
+    if (unitPrice < 0 ||
+        discountPercent < 0 ||
+        discountPercent > 100 ||
+        extraExpenses < 0 ||
+        ivaPercent < 0 ||
+        irpfPercent < 0) {
+
+        showError("budgetError", "Comprueba que los valores sean válidos.");
+        return null;
+    }
+
+
+    // Fórmulas.
+
+    const subtotal = quantity * unitPrice;
+
+    const discount = subtotal * discountPercent / 100;
+
+    const base = subtotal - discount + extraExpenses;
+
+    const iva = base * ivaPercent / 100;
+
+    const irpf = base * irpfPercent / 100;
+
+    const total = base + iva - irpf;
+
+
+    lastBudget = {
+        businessName: document.getElementById("businessName").value,
+        clientName: document.getElementById("clientName").value,
+        workDescription: document.getElementById("workDescription").value,
+        quantity,
+        unitPrice,
+        discountPercent,
+        extraExpenses,
+        ivaPercent,
+        irpfPercent,
+        subtotal,
+        discount,
+        base,
+        iva,
+        irpf,
+        total
+    };
+
+
+    // Mostrar resultados.
+
+    document.getElementById("rSubtotal").textContent = euros(subtotal);
+
+    document.getElementById("rDiscount").textContent = euros(discount);
+
+    document.getElementById("rBase").textContent = euros(base);
+
+    document.getElementById("rIva").textContent = euros(iva);
+
+    document.getElementById("rIrpf").textContent = euros(irpf);
+
+    document.getElementById("rExpenses").textContent = euros(extraExpenses);
+
+    document.getElementById("rTotal").textContent = euros(total);
+
+    return lastBudget;
+
+}
+
+
+document.getElementById("calculateBudget").addEventListener("click", calculateBudget);
+
+
+// Calcular al cambiar los datos.
+
+document.querySelectorAll("#modalPresupuesto input").forEach(input => {
+
+    input.addEventListener("input", () => {
+        calculateBudget();
+    });
+
+});
+
+
+document.getElementById("clearBudget").addEventListener("click", () => {
+
+    document.getElementById("businessName").value = "";
+
+    document.getElementById("clientName").value = "";
+
+    document.getElementById("workDescription").value = "";
+
+    document.getElementById("quantity").value = "1";
+
+    document.getElementById("unitPrice").value = "100";
+
+    document.getElementById("discount").value = "0";
+
+    document.getElementById("extraExpenses").value = "0";
+
+    document.getElementById("iva").value = "21";
+
+    document.getElementById("irpf").value = "0";
+
+    clearError("budgetError");
+
+    lastBudget = null;
+
+    calculateBudget();
+
+});
+
+
+/* =================================================
+   GUARDADO LOCAL DEL PRESUPUESTO
+   ================================================= */
+
+const STORAGE_KEY = "nexo_presupuesto";
+
+
+document.getElementById("saveBudget").addEventListener("click", () => {
+
+    const result = calculateBudget();
+
+    if (!result) return;
+
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(result));
+
+    document.getElementById("savedNotice").textContent =
+        "Presupuesto guardado localmente en este navegador.";
+
+    document.getElementById("savedNotice").classList.add("show");
+
+});
+
+
+document.getElementById("loadBudget").addEventListener("click", () => {
+
+    const saved = localStorage.getItem(STORAGE_KEY);
+
+    if (!saved) {
+
+        document.getElementById("savedNotice").textContent =
+            "No hay ningún presupuesto guardado.";
+
+        document.getElementById("savedNotice").classList.add("show");
+
+        return;
+
+    }
+
+    try {
+
+        const data = JSON.parse(saved);
+
+        document.getElementById("businessName").value = data.businessName || "";
+
+        document.getElementById("clientName").value = data.clientName || "";
+
+        document.getElementById("workDescription").value = data.workDescription || "";
+
+        document.getElementById("quantity").value = data.quantity;
+
+        document.getElementById("unitPrice").value = data.unitPrice;
+
+        document.getElementById("discount").value = data.discountPercent;
+
+        document.getElementById("extraExpenses").value = data.extraExpenses;
+
+        document.getElementById("iva").value = data.ivaPercent;
+
+        document.getElementById("irpf").value = data.irpfPercent;
+
+        calculateBudget();
+
+        document.getElementById("savedNotice").textContent =
+            "Presupuesto recuperado correctamente.";
+
+        document.getElementById("savedNotice").classList.add("show");
+
+    } catch (error) {
+
+        document.getElementById("savedNotice").textContent =
+            "No se han podido recuperar los datos guardados.";
+
+        document.getElementById("savedNotice").classList.add("show");
+
+    }
+
+});
+
+
+/* =================================================
+   COPIAR PRESUPUESTO
+   ================================================= */
+
+document.getElementById("copyBudget").addEventListener("click", async () => {
+
+    const result = calculateBudget();
+
+    if (!result) return;
+
+    const text = `
+NEXO — PRESUPUESTO
+
+Negocio: ${result.businessName || "Sin especificar"}
+Cliente: ${result.clientName || "Sin especificar"}
+
+${result.workDescription || ""}
+
+Subtotal: ${euros(result.subtotal)}
+Descuento: ${euros(result.discount)}
+Base imponible: ${euros(result.base)}
+IVA: ${euros(result.iva)}
+IRPF: ${euros(result.irpf)}
+Gastos adicionales: ${euros(result.extraExpenses)}
+
+TOTAL: ${euros(result.total)}
+
+Cálculos orientativos.
+    `.trim();
+
+    try {
+
+        await navigator.clipboard.writeText(text);
+
+        alert("Resultado copiado al portapapeles.");
+
+    } catch (error) {
+
+        alert("No se ha podido copiar. Puedes seleccionar el resultado manualmente.");
+
+    }
+
+});
+
+
+/* =================================================
+   IMPRIMIR PRESUPUESTO
+   ================================================= */
+
+document.getElementById("printBudget").addEventListener("click", () => {
+
+    const result = calculateBudget();
+
+    if (!result) return;
+
+    // La impresión utiliza la función nativa del navegador.
+
+    window.print();
+
+});
+
+
+/* =================================================
+   PRECIO POR HORA
+   ================================================= */
+
+function calculateHour() {
+
+    clearError("hourError");
+
+    const income = numberValue("monthlyIncome");
+
+    const costs = numberValue("monthlyCosts");
+
+    const hours = numberValue("billableHours");
+
+    const reserve = numberValue("hourReserve");
+
+
+    if (income < 0 || costs < 0 || hours <= 0 || reserve < 0) {
+
+        showError("hourError", "Introduce valores válidos. Las horas deben ser mayores que cero.");
+
+        return;
+
+    }
+
+
+    // Ingresos necesarios para cubrir gastos y objetivo.
+
+    const needed = income + costs;
+
+    // Precio mínimo sin reserva adicional.
+
+    const minimum = needed / hours;
+
+    // Precio recomendado con reserva.
+
+    const recommended = minimum * (1 + reserve / 100);
+
+
+    document.getElementById("hNeeded").textContent = euros(needed);
+
+    document.getElementById("hMinimum").textContent = euros(minimum);
+
+    document.getElementById("hRecommended").textContent = euros(recommended);
+
+}
+
+
+document.getElementById("calculateHour").addEventListener("click", calculateHour);
+
+document.querySelectorAll("#modalHora input").forEach(input => {
+
+    input.addEventListener("input", calculateHour);
+
+});
+
+
+/* =================================================
+   BENEFICIO Y MARGEN
+   ================================================= */
+
+function calculateProfit() {
+
+    clearError("profitError");
+
+    const sale = numberValue("salePrice");
+
+    const product = numberValue("productCost");
+
+    const other = numberValue("otherCosts");
+
+
+    if (sale < 0 || product < 0 || other < 0) {
+
+        showError("profitError", "Introduce valores válidos.");
+
+        return;
+
+    }
+
+
+    const costs = product + other;
+
+    const profit = sale - costs;
+
+    const margin = sale > 0 ? profit / sale * 100 : 0;
+
+
+    document.getElementById("pRevenue").textContent = euros(sale);
+
+    document.getElementById("pCosts").textContent = euros(costs);
+
+    document.getElementById("pProfit").textContent = euros(profit);
+
+    document.getElementById("pMargin").textContent = margin.toFixed(2).replace(".", ",") + " %";
+
+}
+
+
+document.getElementById("calculateProfit").addEventListener("click", calculateProfit);
+
+document.querySelectorAll("#modalBeneficio input").forEach(input => {
+
+    input.addEventListener("input", calculateProfit);
+
+});
+
+
+/* =================================================
+   CALCULADORA DE GASTOS
+   ================================================= */
+
+const expenseRows = document.getElementById("expenseRows");
+
+
+document.getElementById("addExpense").addEventListener("click", () => {
+
+    const row = document.createElement("div");
+
+    row.className = "form-row expense-row";
+
+    row.innerHTML = `
+
+        <div class="form-group">
+
+            <label>Concepto</label>
+
+            <input type="text" class="expense-name" placeholder="Otros">
+
+        </div>
+
+        <div class="form-group">
+
+            <label>Importe mensual (€)</label>
+
+            <input type="number" class="expense-value" min="0" step="0.01" value="0">
+
+        </div>
+
+    `;
+
+    expenseRows.appendChild(row);
+
+});
+
+
+function calculateExpenses() {
+
+    clearError("expenseError");
+
+    const names = document.querySelectorAll(".expense-name");
+
+    const values = document.querySelectorAll(".expense-value");
+
+    let monthly = 0;
+
+    let breakdown = "";
+
+
+    for (let i = 0; i < values.length; i++) {
+
+        const name = names[i].value.trim() || "Otros";
+
+        const value = Number(values[i].value);
+
+
+        if (!Number.isFinite(value) || value < 0) {
+
+            showError("expenseError", "Comprueba los importes de los gastos.");
+
+            return;
+
+        }
+
+
+        monthly += value;
+
+
+        if (value > 0) {
+
+            breakdown += `
+
+                <div class="result-row">
+
+                    <span>${escapeHTML(name)}</span>
+
+                    <strong>${euros(value)}</strong>
+
+                </div>
+
+            `;
+
+        }
+
+    }
+
+
+    document.getElementById("eMonthly").textContent = euros(monthly);
+
+    document.getElementById("eAnnual").textContent = euros(monthly * 12);
+
+    document.getElementById("expenseBreakdown").innerHTML = breakdown ||
+        '<p class="form-help">Todavía no hay gastos introducidos.</p>';
+
+}
+
+
+function escapeHTML(text) {
+
+    return text.replace(/[&<>"']/g, char => ({
+
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#039;"
+
+    }[char]));
+
+}
+
+
+document.getElementById("calculateExpenses").addEventListener("click", calculateExpenses);
+
+expenseRows.addEventListener("input", calculateExpenses);
+
+
+document.getElementById("clearExpenses").addEventListener("click", () => {
+
+    expenseRows.innerHTML = "";
+
+    const defaultNames = [
+        "Alquiler",
+        "Materiales",
+        "Software",
+        "Transporte",
+        "Publicidad"
+    ];
+
+    defaultNames.forEach(name => {
+
+        const row = document.createElement("div");
+
+        row.className = "form-row expense-row";
+
+        row.innerHTML = `
+
+            <div class="form-group">
+
+                <label>Concepto</label>
+
+                <input type="text" class="expense-name" value="${name}">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>Importe mensual (€)</label>
+
+                <input type="number" class="expense-value" min="0" step="0.01" value="0">
+
+            </div>
+
+        `;
+
+        expenseRows.appendChild(row);
+
+    });
+
+    calculateExpenses();
+
+});
+
+
+/* =================================================
+   PREMIUM
+   ================================================= */
+
+document.querySelectorAll("[data-premium]").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        openModal("modalPremium");
+
+    });
+
+});
+
+
+document.getElementById("interestButton").addEventListener("click", () => {
+
+    document.getElementById("interestMessage").textContent =
+        "La lista de interés todavía no está conectada a ningún servidor. No se ha enviado ningún dato.";
+
+});
+
+
+/* =================================================
+   FAQ
+   ================================================= */
+
+document.querySelectorAll(".faq-question").forEach(button => {
+
+    button.addEventListener("click", () => {
+
+        const item = button.parentElement;
+
+        const isOpen = item.classList.contains("open");
+
+        document.querySelectorAll(".faq-item").forEach(other => {
+
+            other.classList.remove("open");
+
+            other.querySelector(".faq-question span").textContent = "+";
 
         });
 
+        if (!isOpen) {
 
-        /* =========================================
-           2. ANIMACIONES AL HACER SCROLL
-           ========================================= */
+            item.classList.add("open");
 
-        const elementos = document.querySelectorAll(".aparecer");
+            button.querySelector("span").textContent = "−";
 
+        }
 
-        const observador = new IntersectionObserver(function (entradas) {
+    });
 
-            entradas.forEach(function (entrada) {
-
-                if (entrada.isIntersecting) {
-
-                    entrada.target.classList.add("visible");
-
-                    observador.unobserve(entrada.target);
-
-                }
-
-            });
-
-        }, {
-
-            threshold: 0.15
-
-        });
+});
 
 
-        elementos.forEach(function (elemento) {
+/* =================================================
+   AVISO LEGAL Y PRIVACIDAD
+   ================================================= */
 
-            observador.observe(elemento);
-
-        });
-
-
-        /* =========================================
-           3. BOTÓN INTERACTIVO
-           ========================================= */
-
-        const botonMensaje = document.getElementById("botonMensaje");
-
-        const mensaje = document.getElementById("mensaje");
+const infoContent = document.getElementById("infoContent");
 
 
-        botonMensaje.addEventListener("click", function () {
+function showInfo(title, content) {
 
-            mensaje.textContent =
-                "¡Gracias por visitar NEXO! Pronto habrá nuevas posibilidades.";
+    document.getElementById("tituloInfo").textContent = title;
 
-            botonMensaje.textContent = "¡Hasta pronto!";
+    infoContent.innerHTML = content;
 
-        });
+    openModal("modalInfo");
+
+}
 
 
-        /* =========================================
-           4. AÑO AUTOMÁTICO
-           ========================================= */
+document.querySelectorAll('a[href="#privacidad"]').forEach(link => {
 
-        document.getElementById("anio").textContent =
-            new Date().getFullYear();
+    link.addEventListener("click", event => {
 
-    </script>
+        event.preventDefault();
 
+        showInfo("Privacidad", `
+
+            <p>
+                Esta versión de NEXO no utiliza cuentas de usuario
+                ni envía los datos de las herramientas a servidores.
+            </p>
+
+            <p style="margin-top:15px;">
+                Los datos guardados mediante localStorage permanecen
+                en el navegador del dispositivo. Pueden perderse
+                si se borran los datos del navegador o se cambia
+                de dispositivo.
+            </p>
+
+        `);
+
+    });
+
+});
+
+
+document.querySelectorAll('a[href="#legal"]').forEach(link => {
+
+    link.addEventListener("click", event => {
+
+        event.preventDefault();
+
+        showInfo("Aviso legal", `
+
+            <p>
+                NEXO es una demostración de plataforma digital.
+                Algunas funciones están en desarrollo.
+            </p>
+
+            <p style="margin-top:15px;">
+                Las herramientas ofrecen cálculos orientativos
+                y no sustituyen una factura oficial,
+                asesoramiento fiscal ni contable.
+            </p>
+
+            <p style="margin-top:15px;">
+                Comprueba siempre los impuestos y requisitos
+                aplicables a tu país o situación.
+            </p>
+
+        `);
+
+    });
+
+});
+
+
+/* =================================================
+   AÑO DEL FOOTER
+   ================================================= */
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+
+/* =================================================
+   INICIALIZAR RESULTADOS
+   ================================================= */
+
+calculateBudget();
+
+calculateHour();
+
+calculateProfit();
+
+calculateExpenses();
+
+</script>
 
 </body>
-
 </html>
