@@ -1,0 +1,989 @@
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mi primera web</title>
+
+    <meta name="description" content="Mi primera página web creada desde cero.">
+
+    <style>
+        /* ========================================
+           1. CONFIGURACIÓN GENERAL
+           ======================================== */
+
+        :root {
+            --color-principal: #6366f1;
+            --color-principal-hover: #4f46e5;
+            --color-fondo: #f8fafc;
+            --color-texto: #0f172a;
+            --color-secundario: #64748b;
+            --color-blanco: #ffffff;
+            --color-borde: #e2e8f0;
+            --sombra: 0 10px 30px rgba(15, 23, 42, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--color-fondo);
+            color: var(--color-texto);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ========================================
+           2. CABECERA Y MENÚ
+           ======================================== */
+
+        .cabecera {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(255, 255, 255, 0.95);
+            border-bottom: 1px solid var(--color-borde);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-size: 1.4rem;
+            font-weight: bold;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            color: var(--color-principal);
+        }
+
+        .enlaces {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .enlaces a {
+            color: var(--color-secundario);
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+        }
+
+        .enlaces a:hover {
+            color: var(--color-principal);
+        }
+
+        .boton-menu {
+            display: none;
+            background: transparent;
+            border: none;
+            font-size: 1.7rem;
+            color: var(--color-texto);
+        }
+
+        /* ========================================
+           3. BOTONES
+           ======================================== */
+
+        .boton {
+            display: inline-block;
+            background: var(--color-principal);
+            color: var(--color-blanco);
+            padding: 13px 24px;
+            border-radius: 8px;
+            border: none;
+            font-weight: bold;
+            transition: background 0.3s ease,
+                        transform 0.3s ease;
+        }
+
+        .boton:hover {
+            background: var(--color-principal-hover);
+            transform: translateY(-2px);
+        }
+
+        .boton-secundario {
+            display: inline-block;
+            background: var(--color-blanco);
+            color: var(--color-texto);
+            padding: 13px 24px;
+            border: 1px solid var(--color-borde);
+            border-radius: 8px;
+            font-weight: bold;
+            transition: transform 0.3s ease,
+                        border-color 0.3s ease;
+        }
+
+        .boton-secundario:hover {
+            transform: translateY(-2px);
+            border-color: var(--color-principal);
+        }
+
+        /* ========================================
+           4. SECCIÓN PRINCIPAL
+           ======================================== */
+
+        .hero {
+            padding: 110px 0 90px;
+            background: var(--color-blanco);
+        }
+
+        .hero-contenido {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .etiqueta {
+            display: inline-block;
+            background: #eef2ff;
+            color: var(--color-principal);
+            padding: 6px 12px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.3rem, 5vw, 4rem);
+            line-height: 1.15;
+            letter-spacing: -1.5px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 span {
+            color: var(--color-principal);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--color-secundario);
+            max-width: 500px;
+            margin-bottom: 30px;
+        }
+
+        .hero-botones {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        /* Ilustración creada únicamente con CSS */
+
+        .ilustracion {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 300px;
+        }
+
+        .circulo {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #e0e7ff, #c7d2fe);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .tarjeta-ilustracion {
+            width: 210px;
+            padding: 25px;
+            background: var(--color-blanco);
+            border-radius: 16px;
+            box-shadow: var(--sombra);
+            transform: rotate(-5deg);
+        }
+
+        .barra {
+            height: 10px;
+            border-radius: 10px;
+            background: #e0e7ff;
+            margin-bottom: 14px;
+        }
+
+        .barra.corta {
+            width: 55%;
+            background: #a5b4fc;
+        }
+
+        .barra.media {
+            width: 80%;
+        }
+
+        .circulo-pequeno {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--color-principal);
+            margin-bottom: 20px;
+        }
+
+        /* ========================================
+           5. SECCIONES
+           ======================================== */
+
+        .seccion {
+            padding: 90px 0;
+        }
+
+        .seccion-cabecera {
+            text-align: center;
+            max-width: 650px;
+            margin: 0 auto 45px;
+        }
+
+        .seccion-cabecera h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .seccion-cabecera p {
+            color: var(--color-secundario);
+        }
+
+        .tarjetas {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .tarjeta {
+            background: var(--color-blanco);
+            padding: 30px;
+            border: 1px solid var(--color-borde);
+            border-radius: 14px;
+            transition: transform 0.3s ease,
+                        box-shadow 0.3s ease;
+        }
+
+        .tarjeta:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra);
+        }
+
+        .icono {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eef2ff;
+            color: var(--color-principal);
+            border-radius: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .tarjeta h3 {
+            margin-bottom: 12px;
+            font-size: 1.2rem;
+        }
+
+        .tarjeta p {
+            color: var(--color-secundario);
+            font-size: 0.95rem;
+        }
+
+        /* ========================================
+           6. SECCIÓN SOBRE EL PROYECTO
+           ======================================== */
+
+        .sobre {
+            background: var(--color-blanco);
+        }
+
+        .sobre-contenido {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .sobre h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .sobre p {
+            color: var(--color-secundario);
+            margin-bottom: 15px;
+        }
+
+        .lista {
+            list-style: none;
+            margin-top: 25px;
+        }
+
+        .lista li {
+            margin-bottom: 12px;
+        }
+
+        .lista li::before {
+            content: "✓";
+            color: var(--color-principal);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .estadisticas {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .estadistica {
+            padding: 30px;
+            background: var(--color-fondo);
+            border: 1px solid var(--color-borde);
+            border-radius: 14px;
+            text-align: center;
+        }
+
+        .estadistica strong {
+            display: block;
+            font-size: 2.2rem;
+            color: var(--color-principal);
+        }
+
+        .estadistica span {
+            color: var(--color-secundario);
+            font-size: 0.9rem;
+        }
+
+        /* ========================================
+           7. CONTACTO
+           ======================================== */
+
+        .contacto {
+            text-align: center;
+        }
+
+        .contacto-contenido {
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        .contacto h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        .contacto p {
+            color: var(--color-secundario);
+            margin-bottom: 30px;
+        }
+
+        .mensaje {
+            margin-top: 20px;
+            color: var(--color-principal);
+            font-weight: bold;
+            min-height: 25px;
+        }
+
+        /* ========================================
+           8. PIE DE PÁGINA
+           ======================================== */
+
+        .footer {
+            background: #0f172a;
+            color: #cbd5e1;
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+        }
+
+        .footer span {
+            color: #818cf8;
+        }
+
+        /* ========================================
+           9. ADAPTACIÓN A MÓVILES
+           ======================================== */
+
+        @media (max-width: 768px) {
+
+            .nav {
+                min-height: 65px;
+            }
+
+            .boton-menu {
+                display: block;
+            }
+
+            .enlaces {
+                display: none;
+                position: absolute;
+                top: 65px;
+                left: 0;
+                width: 100%;
+                background: var(--color-blanco);
+                flex-direction: column;
+                align-items: stretch;
+                gap: 0;
+                border-bottom: 1px solid var(--color-borde);
+            }
+
+            .enlaces.activo {
+                display: flex;
+            }
+
+            .enlaces li {
+                border-top: 1px solid var(--color-borde);
+            }
+
+            .enlaces a {
+                display: block;
+                padding: 16px 5%;
+            }
+
+            .hero {
+                padding: 70px 0;
+            }
+
+            .hero-contenido {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+
+            .hero p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-botones {
+                justify-content: center;
+            }
+
+            .ilustracion {
+                min-height: 240px;
+            }
+
+            .circulo {
+                width: 230px;
+                height: 230px;
+            }
+
+            .tarjetas {
+                grid-template-columns: 1fr;
+            }
+
+            .sobre-contenido {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .seccion {
+                padding: 65px 0;
+            }
+
+            .seccion-cabecera h2,
+            .sobre h2,
+            .contacto h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        @media (max-width: 400px) {
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .boton,
+            .boton-secundario {
+                width: 100%;
+                text-align: center;
+            }
+
+            .estadisticas {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ========================================
+         CABECERA
+         ======================================== -->
+
+    <header class="cabecera">
+
+        <div class="contenedor nav">
+
+            <!-- CAMBIA ESTE NOMBRE POR EL DE TU WEB -->
+
+            <a href="#inicio" class="logo">
+                Mi<span>Web</span>
+            </a>
+
+            <button
+                class="boton-menu"
+                id="botonMenu"
+                aria-label="Abrir menú"
+                aria-expanded="false"
+                aria-controls="enlaces">
+                ☰
+            </button>
+
+            <nav>
+                <ul class="enlaces" id="enlaces">
+
+                    <li>
+                        <a href="#inicio">Inicio</a>
+                    </li>
+
+                    <li>
+                        <a href="#servicios">Servicios</a>
+                    </li>
+
+                    <li>
+                        <a href="#sobre">Sobre mí</a>
+                    </li>
+
+                    <li>
+                        <a href="#contacto">Contacto</a>
+                    </li>
+
+                </ul>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- ========================================
+         PRESENTACIÓN PRINCIPAL
+         ======================================== -->
+
+    <main>
+
+        <section class="hero" id="inicio">
+
+            <div class="contenedor hero-contenido">
+
+                <div>
+
+                    <span class="etiqueta">
+                        Mi primera página web
+                    </span>
+
+                    <h1>
+                        Ideas que se convierten en
+                        <span>realidad.</span>
+                    </h1>
+
+                    <p>
+                        Bienvenido a mi primera web. Este es un
+                        espacio de demostración donde puedo
+                        presentar mis proyectos, compartir ideas
+                        y aprender a crear cosas nuevas.
+                    </p>
+
+                    <div class="hero-botones">
+
+                        <a href="#servicios" class="boton">
+                            Explorar web
+                        </a>
+
+                        <a href="#sobre" class="boton-secundario">
+                            Conocer más
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Ilustración sin imágenes externas -->
+
+                <div class="ilustracion">
+
+                    <div class="circulo">
+
+                        <div class="tarjeta-ilustracion">
+
+                            <div class="circulo-pequeno"></div>
+
+                            <div class="barra media"></div>
+
+                            <div class="barra corta"></div>
+
+                            <div class="barra media"></div>
+
+                            <div class="barra corta"></div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             SERVICIOS / CARACTERÍSTICAS
+             ======================================== -->
+
+        <section class="seccion" id="servicios">
+
+            <div class="contenedor">
+
+                <div class="seccion-cabecera">
+
+                    <h2>
+                        ¿Qué encontrarás aquí?
+                    </h2>
+
+                    <p>
+                        Una página sencilla, moderna y preparada
+                        para convertirse en cualquier proyecto.
+                    </p>
+
+                </div>
+
+
+                <div class="tarjetas">
+
+                    <article class="tarjeta">
+
+                        <div class="icono">
+                            ✦
+                        </div>
+
+                        <h3>
+                            Diseño moderno
+                        </h3>
+
+                        <p>
+                            Una apariencia limpia y profesional
+                            para presentar tus ideas de forma
+                            atractiva.
+                        </p>
+
+                    </article>
+
+
+                    <article class="tarjeta">
+
+                        <div class="icono">
+                            ◈
+                        </div>
+
+                        <h3>
+                            Adaptada a móviles
+                        </h3>
+
+                        <p>
+                            El diseño se adapta a ordenadores,
+                            tablets y teléfonos para que todo
+                            se vea correctamente.
+                        </p>
+
+                    </article>
+
+
+                    <article class="tarjeta">
+
+                        <div class="icono">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            Fácil de modificar
+                        </h3>
+
+                        <p>
+                            Todo está organizado en un solo
+                            archivo para que puedas cambiar
+                            textos, colores y secciones.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             SOBRE EL PROYECTO
+             ======================================== -->
+
+        <section class="seccion sobre" id="sobre">
+
+            <div class="contenedor sobre-contenido">
+
+                <div>
+
+                    <span class="etiqueta">
+                        Sobre este proyecto
+                    </span>
+
+                    <h2>
+                        Una base para empezar a crear.
+                    </h2>
+
+                    <p>
+                        Esta web es una demostración de lo que
+                        puedes construir con HTML, CSS y JavaScript.
+                    </p>
+
+                    <p>
+                        No necesitas conocimientos avanzados
+                        para comenzar. Puedes cambiar el contenido
+                        y aprender poco a poco mientras desarrollas
+                        tu propia página.
+                    </p>
+
+                    <ul class="lista">
+
+                        <li>
+                            Un único archivo HTML.
+                        </li>
+
+                        <li>
+                            Sin librerías externas.
+                        </li>
+
+                        <li>
+                            Funciona sin conexión a internet.
+                        </li>
+
+                        <li>
+                            Preparada para GitHub Pages.
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="estadisticas">
+
+                    <div class="estadistica">
+
+                        <strong>
+                            100%
+                        </strong>
+
+                        <span>
+                            Código propio
+                        </span>
+
+                    </div>
+
+
+                    <div class="estadistica">
+
+                        <strong>
+                            0 €
+                        </strong>
+
+                        <span>
+                            Coste de creación
+                        </span>
+
+                    </div>
+
+
+                    <div class="estadistica">
+
+                        <strong>
+                            1
+                        </strong>
+
+                        <span>
+                            Archivo HTML
+                        </span>
+
+                    </div>
+
+
+                    <div class="estadistica">
+
+                        <strong>
+                            ∞
+                        </strong>
+
+                        <span>
+                            Posibilidades
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ========================================
+             CONTACTO
+             ======================================== -->
+
+        <section class="seccion contacto" id="contacto">
+
+            <div class="contenedor contacto-contenido">
+
+                <span class="etiqueta">
+                    Próximamente
+                </span>
+
+                <h2>
+                    ¿Qué será lo siguiente?
+                </h2>
+
+                <p>
+                    Cuando decidas el tema de tu web, podremos
+                    transformar esta demostración en un proyecto
+                    real.
+                </p>
+
+                <button class="boton" id="botonMensaje">
+                    Probar interacción
+                </button>
+
+                <p class="mensaje" id="mensaje"></p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ========================================
+         PIE DE PÁGINA
+         ======================================== -->
+
+    <footer class="footer">
+
+        <div class="contenedor">
+
+            <p>
+                © <span id="anio"></span>
+                MiWeb. Creada desde cero.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ========================================
+         JAVASCRIPT
+         ======================================== -->
+
+    <script>
+
+        // 1. MENÚ PARA MÓVILES
+
+        const botonMenu = document.getElementById("botonMenu");
+        const enlaces = document.getElementById("enlaces");
+
+        botonMenu.addEventListener("click", function () {
+
+            enlaces.classList.toggle("activo");
+
+            const abierto = enlaces.classList.contains("activo");
+
+            botonMenu.setAttribute("aria-expanded", abierto);
+
+            botonMenu.textContent = abierto ? "✕" : "☰";
+
+        });
+
+
+        // Cerrar el menú al pulsar un enlace
+
+        const enlacesMenu = document.querySelectorAll(".enlaces a");
+
+        enlacesMenu.forEach(function (enlace) {
+
+            enlace.addEventListener("click", function () {
+
+                enlaces.classList.remove("activo");
+
+                botonMenu.setAttribute("aria-expanded", "false");
+
+                botonMenu.textContent = "☰";
+
+            });
+
+        });
+
+
+        // 2. BOTÓN INTERACTIVO
+
+        const botonMensaje = document.getElementById("botonMensaje");
+        const mensaje = document.getElementById("mensaje");
+
+        botonMensaje.addEventListener("click", function () {
+
+            mensaje.textContent =
+                "¡Funciona! Ya has creado tu primera interacción con JavaScript.";
+
+            botonMensaje.textContent = "¡Perfecto!";
+
+        });
+
+
+        // 3. AÑO AUTOMÁTICO DEL PIE DE PÁGINA
+
+        document.getElementById("anio").textContent =
+            new Date().getFullYear();
+
+    </script>
+
+</body>
+</html>
